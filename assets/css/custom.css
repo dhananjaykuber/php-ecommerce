@@ -1,0 +1,11 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.custom-img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+}

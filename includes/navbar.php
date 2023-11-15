@@ -10,17 +10,27 @@
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="categories.php">Collections</a>
         </li>
         
         <?php
             if(isset($_SESSION['auth'])) {
             ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.php">Cart</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?= $_SESSION['auth_user']['email']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <?php 
+                        if($_SESSION['role_as'] == 1) {
+                        ?>
+                          <li><a class="dropdown-item" href="admin">Dashboard</a></li>
+                        <?php
+                        }
+                        ?>
                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </li>

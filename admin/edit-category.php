@@ -1,6 +1,6 @@
 <?php
-    include('includes/header.php');
     include('../middleware/adminMiddleware.php');
+    include('includes/header.php');
 ?>
     <div class="container">
         <div class="row">
@@ -14,8 +14,9 @@
                     $data = mysqli_fetch_array($category);
                 ?>
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header flex">
                         <h4>Edit Category</h4>
+                        <a href="category.php" class="btn btn-primary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="code.php" method="POST" enctype="multipart/form-data">

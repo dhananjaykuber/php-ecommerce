@@ -53,6 +53,7 @@ else if(isset($_POST['login_btn'])) {
         $userdata = mysqli_fetch_array($login_query_run);
 
         $_SESSION['auth_user'] = [
+            'user_id' => $userdata['id'],
             'name' => $userdata['name'],
             'email' => $userdata['email']
         ];

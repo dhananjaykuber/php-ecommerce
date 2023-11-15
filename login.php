@@ -4,6 +4,7 @@
 
     if(isset($_SESSION['auth'])) {
         redirect('You are already logged in.', 'index.php');
+        exit;
     }
 ?>
 

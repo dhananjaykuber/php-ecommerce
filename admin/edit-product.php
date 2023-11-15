@@ -1,6 +1,6 @@
 <?php
-    include('includes/header.php');
     include('../middleware/adminMiddleware.php');
+    include('includes/header.php');
 ?>
     <div class="container">
         <div class="row">
@@ -16,6 +16,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Edit Product</h4>
+                                <a href="products.php" class="btn btn-primary float-end">Back</a>
                             </div>
                             <div class="card-body">
                                 <form action="code.php" method="POST" enctype="multipart/form-data">
