@@ -60,6 +60,7 @@
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
+                                    <input type="hidden" class="product-selling-price" value="<?= $product['selling_price']; ?>">
                                     <button class="btn btn-primary px-4 add-to-cart-btn" value="<?= $product['id']?>"><i class="fa fa-shopping-cart me-2"></i> Add to cart</button>
                                 </div>
                                 <div class="col-md-6">
