@@ -199,6 +199,20 @@ else if(isset($_POST['delete_product_btn'])) {
         echo 500;
     }
 }
+else if(isset($_POST['update_order_btn'])) {
+    $tracking_id = mysqli_real_escape_string($conn, $_POST['tracking_id']);
+    $order_status = mysqli_real_escape_string($conn, $_POST['order_status']);
+
+    $update_query = "UPDATE orders SET status = '$order_status' WHERE tracking_id = '$tracking_id'";
+    $update_query_run = mysqli_query($conn, $update_query);
+
+    if($update_query_run) {
+        redirect('Order status updated successfully.', "view-order.php?tracking-id=$tracking_id");
+    }
+    else {
+        redirect('Something went wrong. Please try again.', "view-order.php?tracking-id=$tracking_id");
+    }
+}
 else {
     header('Location: ../index.php');
 }

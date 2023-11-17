@@ -1,44 +1,39 @@
 <?php
-    include("includes/header.php");
-    include('functions/myfunctions.php');
-    include('middleware/userMiddleware.php');
+    include('../middleware/adminMiddleware.php');
+    include('includes/header.php');
 ?>
 
-<div class="py-3 bg-primary">
-    <div class="container">
-        <h6 class="text-white">
-            <a class="text-decoration-none text-white" href="index.php">Home / </a>
-            <a class="text-decoration-none text-white" href="my-orders.php">My Orders </a>
-        </h6>
-    </div>
-</div>
-<div class="py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Orders</h4>
+                    <a href="orders-history.php" class="btn btn-primary float-end"><i class="fa fa-history me-2"></i> Orders History</a>
+                </div>
+                <div class="card-body">
                 <?php
-                    $orders = getOrders();
-
+                    $orders = getAllOrders();
                     if(mysqli_num_rows($orders) > 0) {
                     ?>
-
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>User</th>
                                 <th>Tracking No.</th>
                                 <th>Price</th>
                                 <th>Ordered On</th>
                                 <th>View</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <?php
                                 foreach($orders as $item) {
                                 ?>
                                     <tr>
                                         <td><?= $item['id']?></td>
+                                        <td><?= $item['name']?></td>
                                         <td><?= $item['tracking_id']?></td>
                                         <td><?= $item['total_price']?></td>
                                         <td><?= $item['created_at']?></td>
@@ -51,14 +46,13 @@
                             ?>
                         </tbody>
                     </table>
-
-
                     <?php
                     }
                     else {
                         echo "No orders found.";
                     }
                 ?>
+                </div>
             </div>
         </div>
     </div>

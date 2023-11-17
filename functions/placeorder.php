@@ -33,15 +33,24 @@ if(isset($_SESSION['auth'])) {
             $order_id = mysqli_insert_id($conn);
 
             foreach($cart_items as $item) {
-                print_r($item);
-
                 $product_id = $item['product_id'];
                 $product_qty = $item['product_qty'];
                 $price = $item['price'];
 
-
                 $insert_item_query = "INSERT INTO order_items (order_id, product_id, qty, price) VALUES ('$order_id', '$product_id', '$product_qty', '$price')";
                 $insert_item_query_run = mysqli_query($conn, $insert_item_query);
+
+                $product_query = "SELECT * FROM products WHERE id = '$product_id' LIMIT 1";
+                $product_query_run = mysqli_query($conn, $product_query);
+                $product_data = mysqli_fetch_array($product_query_run);
+
+                if($product_data) {
+                    $current_qty = $product_data['qty'];
+                    $updated_qty = $current_qty - $product_qty;
+
+                    $update_query = "UPDATE products SET qty = '$updated_qty' WHERE id = '$product_id'";
+                    $update_query_run = mysqli_query($conn, $update_query);
+                }
             }   
 
             $delete_query = "DELETE FROM carts WHERE user_id = '$user_id'";
